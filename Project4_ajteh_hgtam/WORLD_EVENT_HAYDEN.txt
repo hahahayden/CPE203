@@ -1,0 +1,24 @@
+Hayden Tam
+How To Trigger Event: 
+By left clicking on the mouse, a red square representing lava should show up. It is asked of that the mouse click be not on the edges of the world, leaving a bit of room for the event to generate(even though it technically still works on all edges minus the top edge). A mouse click anywhere but the edges of the world will result in an event. 
+The mouse click function is made in the VirtualWorld() class, where it goes to WorldView() to draw the tiles in the WorldModel(). This is where the lava is laid out.
+
+What should happen when the event is triggered:
+ By triggering an event, red tiles should show up representing lava. Based on whether the surroundings is filled with other entities or not, the number of tiles that can be generated can vary, but at max it can generate 8 tiles. This is the world changing visualization part. The effect of this trigger happens when the miner walks over the lava. Once the miner walks over the lava, the miner turns into a possessed miner, and he moves faster across the world.
+The miner turning into a possessed miner happens within executeActivity inside the Miner Not Full class.
+What the affected entities should do: 
+The affected entity from the lava is the miners, as they turn into possessed miners that move quickly across the world, still picking up the veins and bringing them to the blacksmiths. However, every time a MINER NOT FULL passes over the lava, a fireblob is created on the tile above it.
+The fireblob is created within the executeActivity inside the Miner Not Full class, while all of its functionality is within the Fireblob class. Also modifications within the createFactory class was made to incorporate the new Fireblob class. 
+
+What the new entity is and how it should behave:
+ The new entity is a fireblob, which is generated in the tile on top of a miner not full that passes over the lava. If a fireblob is already there, a duplicate isn’t created, until that fireblob leaves that tile. These fireblobs go around the world quickly, finding ore blobs and killing them. However, these fireblobs only have a limited lifespan, and after some time, they will die off. 
+All this happens within the executeActivity inside the Fireblob class, more specifically in the executeActivity.
+
+
+
+Additional Adds: We also changed the action period for creating an ore, within the vein class. This allows for a quicker spawn time for an oreblob allowing the fireblobs to kill them.
+
+Division of Labor: 
+Aaron- Aaron did the new entity part. He made the fireblob class and made sure that everything the fireblob was doing was proper. He also made sure in the final stages of the project if everything was working, and what would break the program. There were many parts where the fireblob would make the program crash because we weren’t designating what would happen if the cell the fireblob had to move to was occupied, so Aaron made sure that the program ran smoothly.
+
+Hayden- I incorporated the mouse click into the program and made sure the first two parts worked perfectly. I made sure the lava was generated within the mouseclick, and the miners that weren’t full would create the fireblobs while becoming possessed miners. 

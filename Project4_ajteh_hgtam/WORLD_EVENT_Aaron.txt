@@ -1,0 +1,17 @@
+﻿Aaron Teh
+1. The event can be triggered by pressing a mouseclick over any area and it will cause the background image to change into lava in a 3x3 area unless the cursor is on the top row of the window, or the area to be changed contains a blacksmith or vein, then the area without the blacksmith or vein will be changed into lava.
+2. When the event is triggered, the background tiles will be changed into lava described above. If the miners run across the lava tiles, then they will turn into “possessed miners” which increases the miners’ speed. Also, when the miners pass through the lava tiles, they will also produce Fireblobs which target the oreblobs and destroy them.
+3. The affected entities are the miners. When the minerNotFull entities run across the lava tiles from the triggered event, they become “possessed” which causes them to increase in speed and create entities called fireblobs which then target and kill the oreblobs.
+4. The new entity is the fireblob and it is created whenever a “possessed” miner runs through the lava tiles, it creates an fireblob which hunts down oreblobs and kills them. These new entities also have a limited lifespan so that they will disappear after a set time period in order to keep from having too many fireblobs
+Division of Labor:
+I was able to create the fireblobs class as well as implement a limited life on them after they have been created. I also edited the miner image to show the effect as well as editing the image used for the fireblobs. I made sure that fireblobs had no bugs with having multiple fireblobs spawning in a single location so that it wouldn’t break. 
+
+
+Hayden was in charge of including incorporating the fireblobs and generating the background cells for the entity change. He also included the effect to modify the minerNotFull entities to make them “possessed”.
+
+
+MousePress/World Changing event: 
+The code for this item can be found in the VirtualWorld class under the mousePressed function. This then calls drawLava in WorldView which also calls drawTilesInWorld in WorldModel.
+
+
+The new entity is found in the Fireblob class where it extends animated activity and implements movable. In the Fireblob class, I implement the moveTo, executeActivity, and nextPosition function.
